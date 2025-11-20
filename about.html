@@ -9,13 +9,32 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <title>ONN - Affordable Luxury Fashion</title>
+  <title>About ONN - Affordable Luxury</title>
+  <style>
+    .page-content {
+      max-width: 800px;
+      margin: 6rem auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .page-content h1 {
+      font-family: var(--font-heading);
+      font-size: 4rem;
+      margin-bottom: 2rem;
+      color: var(--white);
+    }
+
+    .page-content p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Vertical ONN Text -->
-  <div class="vertical-onn">N<br>N<br>O</div>
-
   <!-- Header -->
   <header class="site-header">
     <div class="marquee-container">
@@ -24,28 +43,20 @@
         <span>ONN ONN ONN ONN ONN ONN ONN ONN ONN ONN</span>
       </div>
     </div>
-    <!-- Header content removed as requested -->
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-content">
-        <h1>Discover Affordable Luxurious Fashion Experiences</h1>
-        <div class="search-placeholder">
-          <form action="#" class="search-form">
-            <input type="search" placeholder="Enter Zip Code (e.g., 10001)..." aria-label="Search by Zip Code" name="q">
-            <button type="submit" class="search-button">
-              <i class="fas fa-search"></i>
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section id="results-container" class="results-section">
-      <!-- Results will be injected here -->
-    </section>
+    <div class="page-content">
+      <h1>About ONN</h1>
+      <p>ONN is a curated search engine for the discerning fashionista. We believe that luxury shouldn't cost the
+        earth—literally or figuratively.</p>
+      <p>Our mission is to connect you with the finest consignment and thrift stores in your area, offering a
+        sustainable way to access high-end fashion. From vintage Chanel to pre-loved Gucci, ONN helps you discover
+        hidden gems in your neighborhood.</p>
+      <p>Founded in New York City, we are dedicated to promoting circular fashion and supporting local businesses.</p>
+      <a href="index.Html" class="view-details" style="font-size: 1.2rem; margin-top: 2rem; display: inline-block;">Back
+        to Search</a>
+    </div>
   </main>
 
   <!-- Footer -->
@@ -67,20 +78,6 @@
       </nav>
     </div>
   </footer>
-
-  <script src="data.js"></script>
-  <script src="script.js"></script>
-  <script>
-    // Add smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-  </script>
 </body>
 
 </html>
