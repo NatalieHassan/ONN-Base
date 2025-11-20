@@ -4,50 +4,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="IMG_7006.JPG">
+
+  <!-- SEO -->
+  <meta name="description" content="Create an ONN account. Join the community of affordable luxury.">
+  <meta property="og:title" content="Sign Up - ONN">
+  <meta property="og:image" content="https://onn-fashion.netlify.app/IMG_7006.JPG">
+
   <link rel="stylesheet" href="stylesheets.css">
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <title>Contact ONN</title>
+  <title>Sign Up - ONN</title>
   <style>
-    .contact-container {
-      max-width: 600px;
+    .login-container {
+      max-width: 400px;
       margin: 6rem auto;
       padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       text-align: center;
     }
 
-    .contact-container h1 {
+    .login-container h1 {
       font-family: var(--font-heading);
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
+      font-size: 3rem;
+      margin-bottom: 2rem;
       color: var(--white);
-    }
-
-    .contact-info {
-      margin-bottom: 3rem;
-      color: var(--text-secondary);
     }
 
     .form-group {
       margin-bottom: 1.5rem;
-      text-align: left;
     }
 
-    .form-group label {
-      display: block;
-      color: var(--text-secondary);
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .form-group input,
-    .form-group textarea {
+    .form-group input {
       width: 100%;
       padding: 1rem;
       background: transparent;
@@ -56,13 +49,12 @@
       font-family: var(--font-body);
     }
 
-    .form-group input:focus,
-    .form-group textarea:focus {
+    .form-group input:focus {
       border-color: var(--accent-gold);
       outline: none;
     }
 
-    .submit-btn {
+    .login-btn {
       width: 100%;
       padding: 1rem;
       background: var(--white);
@@ -75,7 +67,7 @@
       transition: background 0.3s ease;
     }
 
-    .submit-btn:hover {
+    .login-btn:hover {
       background: var(--accent-gold);
     }
   </style>
@@ -93,30 +85,24 @@
   </header>
 
   <main>
-    <div class="contact-container">
-      <h1>Contact Us</h1>
-      <div class="contact-info">
-        <p>Have a question or want to partner with us?</p>
-        <p>Email: hello@onn-fashion.com</p>
-      </div>
-
+    <div class="login-container">
+      <h1>Create Account</h1>
       <form action="#">
         <div class="form-group">
-          <label>Name</label>
-          <input type="text" required>
+          <input type="text" placeholder="Full Name" required>
         </div>
         <div class="form-group">
-          <label>Email</label>
-          <input type="email" required>
+          <input type="email" placeholder="Email Address" required>
         </div>
         <div class="form-group">
-          <label>Message</label>
-          <textarea rows="5" required></textarea>
+          <input type="password" placeholder="Password" required>
         </div>
-        <button type="submit" class="submit-btn">Send Message</button>
+        <button type="submit" class="login-btn">Sign Up</button>
       </form>
-
-      <a href="index.Html" class="view-details" style="font-size: 1rem; margin-top: 3rem; display: inline-block;">Back
+      <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+        Already have an account? <a href="login.html" style="color: var(--accent-gold);">Log in</a>
+      </p>
+      <a href="index.Html" class="view-details" style="font-size: 0.9rem; margin-top: 2rem; display: inline-block;">Back
         to Search</a>
     </div>
   </main>
