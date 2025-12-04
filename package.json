@@ -1,8 +1,0 @@
-{
-  "name": "onn-base-functions",
-  "version": "1.0.0",
-  "description": "Netlify functions for ONN Base",
-  "dependencies": {
-    "node-fetch": "^2.6.7"
-  }
-}

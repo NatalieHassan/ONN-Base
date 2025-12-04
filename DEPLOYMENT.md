@@ -3,32 +3,22 @@
 ## What I Fixed
 
 Your geospatial search wasn't working due to several issues:
-
-1. **CORS Issues**: Direct API calls to Mapbox from the browser were being blocked
-2. **API Key Security**: The API key was exposed in client-side code
-3. **File Naming**: `index.Html` should be `index.html` (case sensitivity matters on servers)
-4. **Missing Configuration**: Netlify functions directory wasn't configured
+1. **File Naming**: `index.Html` should be `index.html` (case sensitivity matters on servers)
+2. **Missing Exports**: Functions weren't properly accessible
+3. **Configuration**: Missing Netlify configuration
 
 ## Changes Made
 
-### 1. Created Netlify Serverless Function
-- **File**: `netlify/functions/geocode.js`
-- **Purpose**: Handles geocoding server-side to avoid CORS and protect API key
-- **How it works**: Your frontend calls this function instead of Mapbox directly
-
-### 2. Updated `geocoding.js`
-- Now calls the Netlify function instead of making direct API calls
+### 1. Updated `geocoding.js`
+- Uses client-side Mapbox API calls
 - Added better error handling and logging
-- Removed exposed API key from client code
+- **Note**: The API key is visible in the client code. This is fine for free/hobby projects, but you should restrict the key in your Mapbox dashboard to your website's URL to prevent misuse.
 
-### 3. Fixed `index.Html` → `index.html`
+### 2. Fixed `index.Html` → `index.html`
 - Renamed to proper lowercase for server compatibility
 
-### 4. Updated `netlify.toml`
-- Added functions directory configuration
-
-### 5. Added `package.json`
-- Required for Netlify function dependencies
+### 3. Updated `netlify.toml`
+- Added basic build configuration
 
 ## How to Deploy
 
@@ -37,32 +27,14 @@ Your geospatial search wasn't working due to several issues:
 1. **Push to GitHub**:
    ```bash
    git add .
-   git commit -m "Fix geospatial search with Netlify functions"
+   git commit -m "Revert to client-side geocoding"
    git push
    ```
 
 2. **In Netlify Dashboard**:
-   - Go to your site settings
-   - Navigate to "Environment variables"
-   - Add: `MAPBOX_API_KEY` = `pk.eyJ1Ijoibi1oYXNzYW43IiwiYSI6ImNtaXJ1cnQzZTB2N20zaHB1MnhqZzR0d2EifQ.VMhWXab7SZnnj7A9BJ51gw`
-   - Trigger a new deploy
+   - Trigger a new deploy if it doesn't happen automatically
 
 3. **Test**: Visit your site and try searching with a zip code like `10001`
-
-### Option 2: Test Locally with Netlify CLI
-
-1. **Install Netlify CLI**:
-   ```bash
-   npm install -g netlify-cli
-   ```
-
-2. **Run locally**:
-   ```bash
-   cd /Users/nataliehassan_admin/Documents/GitHub/ONN-Base
-   netlify dev
-   ```
-
-3. **Test**: Open `http://localhost:8888` and try searching
 
 ## Testing the Search
 
@@ -78,16 +50,9 @@ Try these zip codes:
 
 1. **Open browser console** (F12 or Cmd+Option+I)
 2. **Look for errors** - the console.log statements will show what's happening
-3. **Check these common issues**:
-   - Netlify function deployed? (Check Netlify dashboard → Functions)
-   - Environment variable set? (Check Netlify dashboard → Site settings → Environment variables)
-   - Any CORS errors in console?
-
-### Common Error Messages:
-
-- **"Geocoding service not configured"**: Netlify function isn't deployed yet
-- **"404 on /.netlify/functions/geocode"**: Functions directory not configured properly
-- **"Zip code not found"**: Invalid zip code or Mapbox API issue
+3. **Common Issues**:
+   - **CORS Errors**: If you see CORS errors in the console, check your Mapbox dashboard settings. Ensure your domain (e.g., `your-site.netlify.app`) is added to the allowed URLs for your token.
+   - **"Zip code not found"**: Invalid zip code or Mapbox API issue
 
 ## Next Steps
 
@@ -95,8 +60,3 @@ After deploying, you can:
 1. Add more stores to `data.js`
 2. Adjust the search radius (currently 10 miles) in `script.js`
 3. Customize the UI in `stylesheets.css`
-4. Add filters by category or rating
-
-## Need Help?
-
-Check the browser console for detailed error messages. All functions now have console.log statements to help debug issues.
