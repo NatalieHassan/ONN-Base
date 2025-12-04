@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="IMG_7006.JPG">
+  <link rel="stylesheet" href="stylesheets.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>ONN - Affordable Luxury Fashion</title>
+</head>
+
+<body>
+  <!-- Vertical ONN Text -->
+  <div class="vertical-onn">N<br>N<br>O</div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <span>ONN ONN ONN ONN ONN ONN ONN ONN ONN ONN</span>
+        <span>ONN ONN ONN ONN ONN ONN ONN ONN ONN ONN</span>
+      </div>
+    </div>
+    <!-- Header content removed as requested -->
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <h1>Discover Affordable Luxurious Fashion Experiences</h1>
+        <div class="search-placeholder">
+          <form action="#" class="search-form">
+            <input type="search" placeholder="Enter Zip Code (e.g., 10001)..." aria-label="Search by Zip Code" name="q">
+            <button type="submit" class="search-button">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="results-container" class="results-section">
+      <!-- Results will be injected here -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-bg">
+      <img src="IMG_7002.jpg" alt="Artistic Footer Background">
+    </div>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h2>ONN</h2>
+        <p>Affordable Luxury. Curated Experiences.</p>
+      </div>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Add smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
