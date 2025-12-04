@@ -2,7 +2,7 @@
 
 // Configuration
 const MAPBOX_CONFIG = {
-  API_KEY: 'YOUR_MAPBOX_API_KEY_HERE', // Replace with your Mapbox API key
+  API_KEY: 'pk.eyJ1Ijoibi1oYXNzYW43IiwiYSI6ImNtaXJ1cnQzZTB2N20zaHB1MnhqZzR0d2EifQ.VMhWXab7SZnnj7A9BJ51gw', // Replace with your Mapbox API key
   BASE_URL: 'https://api.mapbox.com/geocoding/v5/mapbox.places'
 };
 
