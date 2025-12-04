@@ -88,22 +88,33 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const searchTerm = searchInput.value.trim();
 
-    if (!searchTerm) return;
+    console.log('Search submitted:', searchTerm);
+
+    if (!searchTerm) {
+      console.log('Empty search term');
+      return;
+    }
 
     // Check if API key is configured
     if (!isApiKeyConfigured()) {
-      showError('Mapbox API key not configured. Please add your API key to geocoding.js');
+      console.error('API not configured');
+      showError('Geocoding service not configured. Please contact support.');
       return;
     }
 
     showLoading();
 
     try {
+      console.log('Starting geocoding for:', searchTerm);
+
       // Geocode the zip code to get coordinates
       const { latitude, longitude } = await geocodeZipCode(searchTerm);
+      console.log('Geocoded successfully:', { latitude, longitude });
 
       // Find nearby stores within radius
+      console.log('Finding nearby stores...');
       const nearbyStores = findNearbyStores(stores, latitude, longitude, DEFAULT_RADIUS);
+      console.log('Found stores:', nearbyStores.length);
 
       // Render results
       renderStores(nearbyStores);

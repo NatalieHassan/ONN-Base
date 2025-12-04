@@ -1,22 +1,17 @@
-// Mapbox Geocoding API integration
-
-// Configuration
-const MAPBOX_CONFIG = {
-  API_KEY: 'pk.eyJ1Ijoibi1oYXNzYW43IiwiYSI6ImNtaXJ1cnQzZTB2N20zaHB1MnhqZzR0d2EifQ.VMhWXab7SZnnj7A9BJ51gw', // Replace with your Mapbox API key
-  BASE_URL: 'https://api.mapbox.com/geocoding/v5/mapbox.places'
-};
+// Geocoding using Netlify serverless function
 
 // Cache for geocoding results to minimize API calls
 const geocodeCache = new Map();
 
 /**
- * Convert a zip code to latitude/longitude coordinates using Mapbox API
+ * Convert a zip code to latitude/longitude coordinates using Netlify function
  * @param {string} zipCode - US zip code
  * @returns {Promise<{latitude: number, longitude: number}>} Coordinates
  */
 async function geocodeZipCode(zipCode) {
   // Check cache first
   if (geocodeCache.has(zipCode)) {
+    console.log('Using cached coordinates for', zipCode);
     return geocodeCache.get(zipCode);
   }
 
@@ -26,22 +21,24 @@ async function geocodeZipCode(zipCode) {
   }
 
   try {
-    const url = `${MAPBOX_CONFIG.BASE_URL}/${encodeURIComponent(zipCode)}.json?access_token=${MAPBOX_CONFIG.API_KEY}&country=US&types=postcode&limit=1`;
+    console.log('Geocoding zip code:', zipCode);
 
-    const response = await fetch(url);
+    // Call Netlify function
+    const response = await fetch('/.netlify/functions/geocode', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ zipCode })
+    });
 
     if (!response.ok) {
-      throw new Error(`Geocoding API error: ${response.status}`);
+      const errorData = await response.json();
+      throw new Error(errorData.error || `Geocoding failed: ${response.status}`);
     }
 
-    const data = await response.json();
-
-    if (!data.features || data.features.length === 0) {
-      throw new Error('Zip code not found. Please check and try again.');
-    }
-
-    const [longitude, latitude] = data.features[0].center;
-    const coordinates = { latitude, longitude };
+    const coordinates = await response.json();
+    console.log('Geocoded coordinates:', coordinates);
 
     // Cache the result
     geocodeCache.set(zipCode, coordinates);
@@ -49,22 +46,14 @@ async function geocodeZipCode(zipCode) {
     return coordinates;
   } catch (error) {
     console.error('Geocoding error:', error);
-    throw error;
+    throw new Error(error.message || 'Unable to geocode zip code. Please try again.');
   }
 }
 
 /**
- * Check if Mapbox API key is configured
- * @returns {boolean} True if API key is set
+ * Check if geocoding is available
+ * @returns {boolean} Always true since we're using serverless function
  */
 function isApiKeyConfigured() {
-  return MAPBOX_CONFIG.API_KEY && MAPBOX_CONFIG.API_KEY !== 'YOUR_MAPBOX_API_KEY_HERE';
-}
-
-/**
- * Set the Mapbox API key programmatically
- * @param {string} apiKey - Mapbox API key
- */
-function setApiKey(apiKey) {
-  MAPBOX_CONFIG.API_KEY = apiKey;
+  return true; // Always available with Netlify function
 }
