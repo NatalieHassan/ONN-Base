@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Google Maps API Key</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .test-container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    button {
+      background: #4285f4;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    button:hover {
+      background: #357ae8;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 4px;
+    }
+    .success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    .info {
+      background: #d1ecf1;
+      color: #0c5460;
+      border: 1px solid #bee5eb;
+      margin-top: 20px;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1>Google Maps Geocoding API Key Test</h1>
+    <p>This will test if your API key is working correctly.</p>
+    
+    <button onclick="testAPIKey()">Test API Key</button>
+    
+    <div id="result"></div>
+    
+    <div class="info">
+      <h3>Common Issues & Fixes:</h3>
+      <ul>
+        <li><strong>REQUEST_DENIED:</strong> 
+          <ul>
+            <li>Check if Geocoding API is enabled in Google Cloud Console</li>
+            <li>Verify API key restrictions allow your domain/localhost</li>
+            <li>Ensure billing is enabled (required even for free tier)</li>
+          </ul>
+        </li>
+        <li><strong>API key restrictions:</strong> For local testing, add:
+          <ul>
+            <li><code>http://localhost:*</code></li>
+            <li><code>http://127.0.0.1:*</code></li>
+            <li><code>file://*</code> (if testing with file:// protocol)</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const API_KEY = 'AIzaSyBNCkA17FuQrsLjToDkdWX_3Z3UHWVId3Q';
+    
+    async function testAPIKey() {
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = '<p>Testing...</p>';
+      
+      try {
+        const testZip = '10001';
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${testZip}&key=${API_KEY}`;
+        
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (data.status === 'OK') {
+          resultDiv.className = 'result success';
+          resultDiv.innerHTML = `
+            <h3>✅ API Key is Working!</h3>
+            <p><strong>Status:</strong> ${data.status}</p>
+            <p><strong>Test Zip Code:</strong> ${testZip}</p>
+            <p><strong>Result:</strong> ${data.results[0].formatted_address}</p>
+            <p>Your API key is configured correctly!</p>
+          `;
+        } else if (data.status === 'REQUEST_DENIED') {
+          resultDiv.className = 'result error';
+          resultDiv.innerHTML = `
+            <h3>❌ REQUEST_DENIED Error</h3>
+            <p><strong>Status:</strong> ${data.status}</p>
+            <p><strong>Error Message:</strong> ${data.error_message || 'No error message provided'}</p>
+            <h4>How to Fix:</h4>
+            <ol>
+              <li>Go to <a href="https://console.cloud.google.com/apis/credentials" target="_blank">Google Cloud Console → Credentials</a></li>
+              <li>Click on your API key</li>
+              <li>Under "Application restrictions":
+                <ul>
+                  <li>Select "HTTP referrers (web sites)"</li>
+                  <li>Add: <code>http://localhost:*</code></li>
+                  <li>Add: <code>http://127.0.0.1:*</code></li>
+                  <li>Add: <code>file://*</code> (if testing locally)</li>
+                </ul>
+              </li>
+              <li>Under "API restrictions":
+                <ul>
+                  <li>Select "Restrict key"</li>
+                  <li>Choose "Geocoding API"</li>
+                </ul>
+              </li>
+              <li>Make sure "Geocoding API" is enabled in <a href="https://console.cloud.google.com/apis/library" target="_blank">API Library</a></li>
+              <li>Enable billing in <a href="https://console.cloud.google.com/billing" target="_blank">Billing</a> (required even for free tier)</li>
+              <li>Click "Save" and wait 5 minutes for changes to propagate</li>
+            </ol>
+          `;
+        } else {
+          resultDiv.className = 'result error';
+          resultDiv.innerHTML = `
+            <h3>⚠️ Unexpected Status</h3>
+            <p><strong>Status:</strong> ${data.status}</p>
+            <p><strong>Error Message:</strong> ${data.error_message || 'No error message'}</p>
+          `;
+        }
+      } catch (error) {
+        resultDiv.className = 'result error';
+        resultDiv.innerHTML = `
+          <h3>❌ Network Error</h3>
+          <p>${error.message}</p>
+          <p>Check your internet connection and try again.</p>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>
+
