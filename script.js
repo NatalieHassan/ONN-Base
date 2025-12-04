@@ -145,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Stores found with simple matching:', filteredStores.length);
 
         // If we have results and geocoding is available, enhance with distance filtering
+        // Only use geocoding if we have exact zip matches to avoid unnecessary API calls
         if (filteredStores.length > 0 && typeof geocodeZipCode !== 'undefined' && typeof isValidZipCodeFormat !== 'undefined') {
           if (isValidZipCodeFormat(searchTerm)) {
             try {
@@ -180,13 +181,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('Stores found with distance filtering:', filteredStores.length);
               } else {
                 // Geocoding didn't return valid result, keep simple matching results
-                console.log('Geocoding unavailable, using zip code matches');
+                console.log('Geocoding unavailable or rate limited, using zip code matches');
               }
             } catch (geocodeError) {
               // Geocoding failed, but we already have results from simple matching
               console.log('Geocoding failed, using zip code matches:', geocodeError.message);
               // Keep the filteredStores from simple matching above
             }
+          } else {
+            // Not a valid zip code format, keep simple name/address matches
+            console.log('Not a valid zip code format, using name/address matches');
           }
         }
 
