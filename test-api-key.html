@@ -64,6 +64,19 @@
   <div class="test-container">
     <h1>Google Maps Geocoding API Key Test</h1>
     <p>This will test if your API key is working correctly.</p>
+    <p style="color: #d32f2f; font-weight: bold; margin-top: 10px;">⚠️ Security: Never commit API keys to git. Enter your key below for testing only.</p>
+    
+    <div style="margin: 20px 0;">
+      <label for="apiKeyInput" style="display: block; margin-bottom: 8px; font-weight: bold;">Enter your Google Maps API Key:</label>
+      <input 
+        type="password" 
+        id="apiKeyInput" 
+        placeholder="AIzaSy..." 
+        style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: monospace; box-sizing: border-box;"
+        onkeypress="if(event.key === 'Enter') testAPIKey()"
+      >
+      <small style="color: #666; display: block; margin-top: 5px;">Your key is only used locally and never stored or sent to any server except Google's API.</small>
+    </div>
     
     <button onclick="testAPIKey()">Test API Key</button>
     
@@ -91,10 +104,21 @@
   </div>
 
   <script>
-    const API_KEY = 'AIzaSyBNCkA17FuQrsLjToDkdWX_3Z3UHWVId3Q';
-    
     async function testAPIKey() {
       const resultDiv = document.getElementById('result');
+      const apiKeyInput = document.getElementById('apiKeyInput');
+      const API_KEY = apiKeyInput.value.trim();
+      
+      if (!API_KEY) {
+        resultDiv.className = 'result error';
+        resultDiv.innerHTML = `
+          <h3>❌ API Key Required</h3>
+          <p>Please enter your Google Maps API key in the field above.</p>
+          <p><strong>Security Note:</strong> Never commit API keys to git. This field is for local testing only.</p>
+        `;
+        return;
+      }
+      
       resultDiv.innerHTML = '<p>Testing...</p>';
       
       try {
