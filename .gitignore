@@ -4,7 +4,7 @@
 # API Keys - Never commit these!
 # Use environment variables or local config files
 *api-key*.js
-*api-key*.html
+# Note: test-api-key.html is kept for convenience, but key should be restricted in Google Cloud
 *.env
 .env.local
 .env.production
