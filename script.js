@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  // Debug: Log store count and sample zip codes on page load
+  console.log('✅ Stores loaded successfully!');
+  console.log('Total stores:', stores.length);
+  console.log('Sample zip codes:', stores.slice(0, 5).map(s => s.zip));
+  console.log('Buffalo area zip codes (142xx):', stores.filter(s => s.zip.startsWith('142')).map(s => `${s.name} - ${s.zip}`));
+
   // Function to show loading state
   function showLoading() {
     resultsContainer.innerHTML = `
