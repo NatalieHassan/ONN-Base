@@ -267,5 +267,404 @@ const stores = [
     image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     description: "Community-focused thrift store with great finds for the whole family.",
     rating: 4.2
+  },
+
+  // EAST COAST - Boston, MA
+  // 02108 - Downtown Boston
+  {
+    id: 22,
+    name: "Boston Consignment Co",
+    address: "123 Newbury St, Boston, MA",
+    zip: "02108",
+    lat: 42.3523,
+    lng: -71.0756,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Upscale consignment on Newbury Street featuring designer brands.",
+    rating: 4.6
+  },
+  {
+    id: 23,
+    name: "The Garment District",
+    address: "200 Broadway, Cambridge, MA",
+    zip: "02139",
+    lat: 42.3736,
+    lng: -71.1189,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Massive thrift store with clothing by the pound. Great for students.",
+    rating: 4.4
+  },
+
+  // Philadelphia, PA
+  // 19103 - Center City
+  {
+    id: 24,
+    name: "Philly Thrift",
+    address: "456 Walnut St, Philadelphia, PA",
+    zip: "19103",
+    lat: 39.9496,
+    lng: -75.1503,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Curated thrift finds in the heart of Philadelphia.",
+    rating: 4.3
+  },
+  {
+    id: 25,
+    name: "Rittenhouse Consignment",
+    address: "789 Chestnut St, Philadelphia, PA",
+    zip: "19106",
+    lat: 39.9526,
+    lng: -75.1652,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Luxury consignment in Rittenhouse Square.",
+    rating: 4.7
+  },
+
+  // Baltimore, MD
+  // 21202 - Inner Harbor
+  {
+    id: 26,
+    name: "Baltimore Vintage",
+    address: "234 Light St, Baltimore, MD",
+    zip: "21202",
+    lat: 39.2904,
+    lng: -76.6122,
+    category: "Vintage",
+    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Vintage clothing and accessories near Inner Harbor.",
+    rating: 4.5
+  },
+
+  // Atlanta, GA
+  // 30309 - Midtown
+  {
+    id: 27,
+    name: "Atlanta Consignment Boutique",
+    address: "567 Peachtree St NE, Atlanta, GA",
+    zip: "30309",
+    lat: 33.7756,
+    lng: -84.3863,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Designer consignment in Midtown Atlanta.",
+    rating: 4.6
+  },
+  {
+    id: 28,
+    name: "Rag-O-Rama",
+    address: "890 Ponce de Leon Ave, Atlanta, GA",
+    zip: "30306",
+    lat: 33.7719,
+    lng: -84.3656,
+    category: "Buy/Sell/Trade",
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Buy, sell, and trade trendy clothing in Atlanta.",
+    rating: 4.4
+  },
+
+  // Miami, FL
+  // 33139 - South Beach
+  {
+    id: 29,
+    name: "Miami Beach Consignment",
+    address: "123 Lincoln Rd, Miami Beach, FL",
+    zip: "33139",
+    lat: 25.7907,
+    lng: -80.1300,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1549897381-5856d8b595e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Luxury consignment on South Beach. Designer swimwear and resort wear.",
+    rating: 4.8
+  },
+
+  // MIDWEST - Chicago, IL
+  // 60611 - Gold Coast
+  {
+    id: 30,
+    name: "Chicago Consignment",
+    address: "456 Rush St, Chicago, IL",
+    zip: "60611",
+    lat: 41.8998,
+    lng: -87.6253,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "High-end consignment in Chicago's Gold Coast.",
+    rating: 4.7
+  },
+  {
+    id: 31,
+    name: "Village Discount Outlet",
+    address: "789 Milwaukee Ave, Chicago, IL",
+    zip: "60622",
+    lat: 41.9008,
+    lng: -87.6728,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Chicago's largest thrift chain with multiple locations.",
+    rating: 4.2
+  },
+
+  // Detroit, MI
+  // 48226 - Downtown
+  {
+    id: 32,
+    name: "Detroit Thrift",
+    address: "234 Woodward Ave, Detroit, MI",
+    zip: "48226",
+    lat: 42.3314,
+    lng: -83.0458,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Affordable thrift finds in downtown Detroit.",
+    rating: 4.3
+  },
+
+  // Minneapolis, MN
+  // 55403 - Uptown
+  {
+    id: 33,
+    name: "Uptown Consignment",
+    address: "567 Hennepin Ave, Minneapolis, MN",
+    zip: "55403",
+    lat: 44.9778,
+    lng: -93.2650,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Curated consignment in Minneapolis Uptown.",
+    rating: 4.5
+  },
+
+  // SOUTH - Nashville, TN
+  // 37203 - Music Row
+  {
+    id: 34,
+    name: "Nashville Thrift",
+    address: "123 Music Square E, Nashville, TN",
+    zip: "37203",
+    lat: 36.1627,
+    lng: -86.7816,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Vintage and thrift finds in Music City.",
+    rating: 4.4
+  },
+
+  // Dallas, TX
+  // 75201 - Downtown
+  {
+    id: 35,
+    name: "Dallas Consignment",
+    address: "456 Main St, Dallas, TX",
+    zip: "75201",
+    lat: 32.7767,
+    lng: -96.7970,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Designer consignment in downtown Dallas.",
+    rating: 4.6
+  },
+  {
+    id: 36,
+    name: "Buffalo Exchange Dallas",
+    address: "789 Greenville Ave, Dallas, TX",
+    zip: "75206",
+    lat: 32.8354,
+    lng: -96.7694,
+    category: "Buy/Sell/Trade",
+    image: "https://images.unsplash.com/photo-1576188973526-0e5d7047b0cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Buy, sell, trade trendy clothing in Dallas.",
+    rating: 4.3
+  },
+
+  // Houston, TX
+  // 77002 - Downtown
+  {
+    id: 37,
+    name: "Houston Thrift",
+    address: "234 Main St, Houston, TX",
+    zip: "77002",
+    lat: 29.7604,
+    lng: -95.3698,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Large selection of thrift finds in Houston.",
+    rating: 4.2
+  },
+
+  // Austin, TX
+  // 78701 - Downtown
+  {
+    id: 38,
+    name: "Austin Vintage",
+    address: "567 Congress Ave, Austin, TX",
+    zip: "78701",
+    lat: 30.2672,
+    lng: -97.7431,
+    category: "Vintage",
+    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Vintage clothing and accessories in the heart of Austin.",
+    rating: 4.7
+  },
+  {
+    id: 39,
+    name: "Buffalo Exchange Austin",
+    address: "890 Guadalupe St, Austin, TX",
+    zip: "78701",
+    lat: 30.2711,
+    lng: -97.7437,
+    category: "Buy/Sell/Trade",
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Keep Austin weird with unique thrift finds.",
+    rating: 4.5
+  },
+
+  // WEST COAST - Los Angeles, CA
+  // 90028 - Hollywood
+  {
+    id: 40,
+    name: "The RealReal LA",
+    address: "123 N Robertson Blvd, Los Angeles, CA",
+    zip: "90048",
+    lat: 34.0736,
+    lng: -118.4004,
+    category: "Luxury Consignment",
+    image: "https://images.unsplash.com/photo-1549897381-5856d8b595e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Luxury consignment in West Hollywood. Designer pieces from celebrities.",
+    rating: 4.9
+  },
+  {
+    id: 41,
+    name: "Wasteland",
+    address: "456 Melrose Ave, Los Angeles, CA",
+    zip: "90048",
+    lat: 34.0837,
+    lng: -118.3444,
+    category: "Buy/Sell/Trade",
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Trendy buy/sell/trade store on Melrose. Great for streetwear.",
+    rating: 4.6
+  },
+  {
+    id: 42,
+    name: "Crossroads Trading",
+    address: "789 Santa Monica Blvd, Los Angeles, CA",
+    zip: "90046",
+    lat: 34.0928,
+    lng: -118.3287,
+    category: "Buy/Sell/Trade",
+    image: "https://images.unsplash.com/photo-1576188973526-0e5d7047b0cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Buy and sell trendy clothing in West Hollywood.",
+    rating: 4.4
+  },
+
+  // San Francisco, CA
+  // 94102 - Tenderloin
+  {
+    id: 43,
+    name: "Goodwill San Francisco",
+    address: "123 Market St, San Francisco, CA",
+    zip: "94102",
+    lat: 37.7749,
+    lng: -122.4194,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Large thrift store in downtown San Francisco.",
+    rating: 4.1
+  },
+  {
+    id: 44,
+    name: "Buffalo Exchange SF",
+    address: "456 Valencia St, San Francisco, CA",
+    zip: "94110",
+    lat: 37.7599,
+    lng: -122.4218,
+    category: "Buy/Sell/Trade",
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Mission District's favorite buy/sell/trade store.",
+    rating: 4.5
+  },
+  {
+    id: 45,
+    name: "The RealReal SF",
+    address: "789 Fillmore St, San Francisco, CA",
+    zip: "94117",
+    lat: 37.7849,
+    lng: -122.4313,
+    category: "Luxury Consignment",
+    image: "https://images.unsplash.com/photo-1549897381-5856d8b595e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Luxury consignment in Pacific Heights.",
+    rating: 4.8
+  },
+
+  // San Diego, CA
+  // 92101 - Downtown
+  {
+    id: 46,
+    name: "San Diego Consignment",
+    address: "234 5th Ave, San Diego, CA",
+    zip: "92101",
+    lat: 32.7157,
+    lng: -117.1611,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Beach-friendly consignment in downtown San Diego.",
+    rating: 4.5
+  },
+
+  // Seattle, WA
+  // 98101 - Downtown
+  {
+    id: 47,
+    name: "Seattle Thrift",
+    address: "456 Pike St, Seattle, WA",
+    zip: "98101",
+    lat: 47.6062,
+    lng: -122.3321,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Eco-conscious thrift store in downtown Seattle.",
+    rating: 4.4
+  },
+  {
+    id: 48,
+    name: "Buffalo Exchange Seattle",
+    address: "789 Broadway E, Seattle, WA",
+    zip: "98102",
+    lat: 47.6205,
+    lng: -122.3214,
+    category: "Buy/Sell/Trade",
+    image: "https://images.unsplash.com/photo-1576188973526-0e5d7047b0cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Capitol Hill's favorite buy/sell/trade store.",
+    rating: 4.6
+  },
+
+  // Portland, OR
+  // 97201 - Downtown
+  {
+    id: 49,
+    name: "Portland Vintage",
+    address: "123 SW 3rd Ave, Portland, OR",
+    zip: "97201",
+    lat: 45.5152,
+    lng: -122.6784,
+    category: "Vintage",
+    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Curated vintage finds in the heart of Portland.",
+    rating: 4.7
+  },
+  {
+    id: 50,
+    name: "Buffalo Exchange Portland",
+    address: "456 SE Hawthorne Blvd, Portland, OR",
+    zip: "97214",
+    lat: 45.5122,
+    lng: -122.6587,
+    category: "Buy/Sell/Trade",
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Keep Portland weird with unique thrift finds.",
+    rating: 4.5
   }
 ];
