@@ -870,5 +870,218 @@ const stores = [
     image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     description: "Designer consignment in downtown Ithaca.",
     rating: 4.5
+  },
+
+  // NEW JERSEY
+  // 07030 - Hoboken, NJ
+  {
+    id: 71,
+    name: "Hoboken Vintage & Thrift",
+    address: "123 Washington St, Hoboken, NJ",
+    zip: "07030",
+    lat: 40.7439,
+    lng: -74.0324,
+    category: "Vintage",
+    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Curated vintage finds in downtown Hoboken.",
+    rating: 4.6
+  },
+  {
+    id: 72,
+    name: "Jersey City Consignment",
+    address: "456 Grove St, Jersey City, NJ",
+    zip: "07302",
+    lat: 40.7178,
+    lng: -74.0431,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Designer consignment in the heart of Jersey City.",
+    rating: 4.5
+  },
+  {
+    id: 73,
+    name: "Newark Thrift Exchange",
+    address: "789 Broad St, Newark, NJ",
+    zip: "07102",
+    lat: 40.7357,
+    lng: -74.1724,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Affordable thrift finds in downtown Newark.",
+    rating: 4.3
+  },
+  {
+    id: 74,
+    name: "Princeton Consignment Boutique",
+    address: "234 Nassau St, Princeton, NJ",
+    zip: "08540",
+    lat: 40.3487,
+    lng: -74.6590,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Upscale consignment near Princeton University.",
+    rating: 4.7
+  },
+  {
+    id: 75,
+    name: "Montclair Vintage",
+    address: "567 Bloomfield Ave, Montclair, NJ",
+    zip: "07042",
+    lat: 40.8168,
+    lng: -74.2210,
+    category: "Vintage",
+    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Curated vintage clothing and accessories in Montclair.",
+    rating: 4.5
+  },
+  {
+    id: 76,
+    name: "Red Bank Thrift",
+    address: "123 Broad St, Red Bank, NJ",
+    zip: "07701",
+    lat: 40.3471,
+    lng: -74.0643,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Affordable thrift finds in Red Bank.",
+    rating: 4.2
+  },
+
+  // RHODE ISLAND
+  // 02903 - Providence, RI
+  {
+    id: 77,
+    name: "Providence Consignment",
+    address: "123 Thayer St, Providence, RI",
+    zip: "02903",
+    lat: 41.8240,
+    lng: -71.4128,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Designer consignment near Brown University.",
+    rating: 4.6
+  },
+  {
+    id: 78,
+    name: "Providence Vintage & Thrift",
+    address: "456 Westminster St, Providence, RI",
+    zip: "02903",
+    lat: 41.8236,
+    lng: -71.4222,
+    category: "Vintage",
+    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Curated vintage finds in downtown Providence.",
+    rating: 4.4
+  },
+  {
+    id: 79,
+    name: "Newport Consignment",
+    address: "234 Thames St, Newport, RI",
+    zip: "02840",
+    lat: 41.4901,
+    lng: -71.3128,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Luxury consignment in historic Newport.",
+    rating: 4.7
+  },
+  {
+    id: 80,
+    name: "Warwick Thrift",
+    address: "567 Post Rd, Warwick, RI",
+    zip: "02886",
+    lat: 41.7001,
+    lng: -71.4162,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Affordable thrift finds in Warwick.",
+    rating: 4.3
+  },
+
+  // CONNECTICUT
+  // 06103 - Hartford, CT
+  {
+    id: 81,
+    name: "Hartford Consignment",
+    address: "234 Asylum St, Hartford, CT",
+    zip: "06103",
+    lat: 41.7658,
+    lng: -72.6734,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Designer consignment in downtown Hartford.",
+    rating: 4.5
+  },
+  {
+    id: 82,
+    name: "New Haven Vintage",
+    address: "456 Chapel St, New Haven, CT",
+    zip: "06511",
+    lat: 41.3083,
+    lng: -72.9279,
+    category: "Vintage",
+    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Curated vintage finds near Yale University.",
+    rating: 4.6
+  },
+  {
+    id: 83,
+    name: "Stamford Consignment Boutique",
+    address: "789 High Ridge Rd, Stamford, CT",
+    zip: "06905",
+    lat: 41.0534,
+    lng: -73.5387,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Upscale consignment in Stamford.",
+    rating: 4.7
+  },
+  {
+    id: 84,
+    name: "Greenwich Thrift & Consignment",
+    address: "234 Greenwich Ave, Greenwich, CT",
+    zip: "06830",
+    lat: 41.0302,
+    lng: -73.6287,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Luxury consignment in Greenwich.",
+    rating: 4.8
+  },
+  {
+    id: 85,
+    name: "Westport Vintage",
+    address: "567 Post Rd E, Westport, CT",
+    zip: "06880",
+    lat: 41.1415,
+    lng: -73.3579,
+    category: "Vintage",
+    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Curated vintage clothing in Westport.",
+    rating: 4.5
+  },
+  {
+    id: 86,
+    name: "Norwalk Thrift Exchange",
+    address: "234 Washington St, Norwalk, CT",
+    zip: "06851",
+    lat: 41.1176,
+    lng: -73.4079,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Affordable thrift finds in Norwalk.",
+    rating: 4.3
+  },
+  {
+    id: 87,
+    name: "Bridgeport Consignment",
+    address: "456 Fairfield Ave, Bridgeport, CT",
+    zip: "06604",
+    lat: 41.1865,
+    lng: -73.1952,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Designer consignment in Bridgeport.",
+    rating: 4.4
   }
 ];
