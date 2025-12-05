@@ -666,5 +666,80 @@ const stores = [
     image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     description: "Keep Portland weird with unique thrift finds.",
     rating: 4.5
+  },
+
+  // WESTERN NEW YORK - Buffalo Area
+  // 14215 - Buffalo, NY
+  {
+    id: 51,
+    name: "Buffalo Thrift & Consignment",
+    address: "123 Main St, Buffalo, NY",
+    zip: "14215",
+    lat: 42.8864,
+    lng: -78.8784,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Affordable thrift finds in Buffalo. Great selection of winter clothing.",
+    rating: 4.3
+  },
+  {
+    id: 52,
+    name: "Queen City Consignment",
+    address: "456 Elmwood Ave, Buffalo, NY",
+    zip: "14222",
+    lat: 42.9017,
+    lng: -78.8728,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Designer consignment on Elmwood Avenue. Buffalo's premier consignment shop.",
+    rating: 4.6
+  },
+  {
+    id: 53,
+    name: "Buffalo Exchange Buffalo",
+    address: "789 Hertel Ave, Buffalo, NY",
+    zip: "14216",
+    lat: 42.9398,
+    lng: -78.8500,
+    category: "Buy/Sell/Trade",
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Buy, sell, and trade trendy clothing in North Buffalo.",
+    rating: 4.4
+  },
+  {
+    id: 54,
+    name: "Vintage Buffalo",
+    address: "234 Allen St, Buffalo, NY",
+    zip: "14201",
+    lat: 42.9013,
+    lng: -78.8773,
+    category: "Vintage",
+    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Curated vintage clothing and accessories in Allentown.",
+    rating: 4.5
+  },
+  {
+    id: 55,
+    name: "Amherst Consignment",
+    address: "567 Sheridan Dr, Amherst, NY",
+    zip: "14221",
+    lat: 42.9784,
+    lng: -78.7997,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Upscale consignment in Amherst. Designer brands at great prices.",
+    rating: 4.7
+  },
+  {
+    id: 56,
+    name: "Goodwill Buffalo",
+    address: "890 Niagara Falls Blvd, Buffalo, NY",
+    zip: "14223",
+    lat: 42.9634,
+    lng: -78.8514,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Large thrift store with great finds for the whole family.",
+    rating: 4.2
   }
 ];
