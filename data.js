@@ -741,5 +741,194 @@ const stores = [
     image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     description: "Large thrift store with great finds for the whole family.",
     rating: 4.2
+  },
+
+  // ROCHESTER, NY Area
+  // 14604 - Rochester, NY
+  {
+    id: 57,
+    name: "Rochester Thrift & Vintage",
+    address: "123 Main St, Rochester, NY",
+    zip: "14604",
+    lat: 43.1566,
+    lng: -77.6088,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Affordable vintage and thrift finds in downtown Rochester.",
+    rating: 4.4
+  },
+  {
+    id: 58,
+    name: "Flower City Consignment",
+    address: "456 Park Ave, Rochester, NY",
+    zip: "14607",
+    lat: 43.1526,
+    lng: -77.5850,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Upscale consignment on Park Avenue. Designer brands at great prices.",
+    rating: 4.6
+  },
+  {
+    id: 59,
+    name: "Goodwill Rochester",
+    address: "789 Monroe Ave, Rochester, NY",
+    zip: "14618",
+    lat: 43.1250,
+    lng: -77.5800,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Large selection of thrift finds in the Monroe Avenue area.",
+    rating: 4.3
+  },
+  {
+    id: 60,
+    name: "Vintage Rochester",
+    address: "234 East Ave, Rochester, NY",
+    zip: "14610",
+    lat: 43.1550,
+    lng: -77.6000,
+    category: "Vintage",
+    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Curated vintage clothing and accessories in the East End.",
+    rating: 4.5
+  },
+
+  // SYRACUSE, NY Area
+  // 13202 - Syracuse, NY
+  {
+    id: 61,
+    name: "Salt City Thrift",
+    address: "123 Salina St, Syracuse, NY",
+    zip: "13202",
+    lat: 43.0481,
+    lng: -76.1474,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Affordable thrift finds in downtown Syracuse.",
+    rating: 4.3
+  },
+  {
+    id: 62,
+    name: "Syracuse Consignment Boutique",
+    address: "456 Marshall St, Syracuse, NY",
+    zip: "13210",
+    lat: 43.0378,
+    lng: -76.1394,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Designer consignment near Syracuse University.",
+    rating: 4.5
+  },
+  {
+    id: 63,
+    name: "Goodwill Syracuse",
+    address: "789 Erie Blvd, Syracuse, NY",
+    zip: "13204",
+    lat: 43.0500,
+    lng: -76.1500,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Large thrift store with great finds for the whole family.",
+    rating: 4.2
+  },
+
+  // NIAGARA FALLS, NY Area
+  // 14301 - Niagara Falls, NY
+  {
+    id: 64,
+    name: "Niagara Falls Thrift",
+    address: "123 Main St, Niagara Falls, NY",
+    zip: "14301",
+    lat: 43.0962,
+    lng: -79.0377,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Affordable thrift finds near the Falls.",
+    rating: 4.3
+  },
+  {
+    id: 65,
+    name: "Falls Consignment",
+    address: "456 Third St, Niagara Falls, NY",
+    zip: "14303",
+    lat: 43.0950,
+    lng: -79.0400,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Designer consignment in Niagara Falls.",
+    rating: 4.4
+  },
+
+  // JAMESTOWN, NY Area
+  // 14701 - Jamestown, NY
+  {
+    id: 66,
+    name: "Jamestown Thrift",
+    address: "123 Main St, Jamestown, NY",
+    zip: "14701",
+    lat: 42.0970,
+    lng: -79.2353,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Affordable thrift finds in Jamestown.",
+    rating: 4.2
+  },
+
+  // ELMIRA, NY Area
+  // 14901 - Elmira, NY
+  {
+    id: 67,
+    name: "Elmira Consignment",
+    address: "123 Water St, Elmira, NY",
+    zip: "14901",
+    lat: 42.0894,
+    lng: -76.8077,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Upscale consignment in Elmira.",
+    rating: 4.4
+  },
+
+  // BINGHAMTON, NY Area
+  // 13901 - Binghamton, NY
+  {
+    id: 68,
+    name: "Binghamton Thrift",
+    address: "123 Main St, Binghamton, NY",
+    zip: "13901",
+    lat: 42.0987,
+    lng: -75.9180,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Affordable thrift finds in Binghamton.",
+    rating: 4.3
+  },
+
+  // ITHACA, NY Area
+  // 14850 - Ithaca, NY
+  {
+    id: 69,
+    name: "Ithaca Vintage & Thrift",
+    address: "123 State St, Ithaca, NY",
+    zip: "14850",
+    lat: 42.4430,
+    lng: -76.5019,
+    category: "Vintage",
+    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Curated vintage finds near Cornell University.",
+    rating: 4.6
+  },
+  {
+    id: 70,
+    name: "Ithaca Consignment",
+    address: "456 College Ave, Ithaca, NY",
+    zip: "14850",
+    lat: 42.4400,
+    lng: -76.5000,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Designer consignment in downtown Ithaca.",
+    rating: 4.5
   }
 ];

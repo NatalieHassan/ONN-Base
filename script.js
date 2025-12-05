@@ -28,13 +28,25 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('Total stores:', stores.length);
   console.log('Sample zip codes:', stores.slice(0, 5).map(s => s.zip));
   const buffaloStores = stores.filter(s => s.zip && (s.zip.startsWith('142') || s.zip.includes('142')));
+  const rochesterStores = stores.filter(s => s.zip && (s.zip.startsWith('146') || s.zip.includes('146')));
+  const syracuseStores = stores.filter(s => s.zip && (s.zip.startsWith('132') || s.zip.includes('132')));
+  const niagaraStores = stores.filter(s => s.zip && (s.zip.startsWith('143') || s.zip.includes('143')));
+  const westernNYStores = stores.filter(s => {
+    if (!s.zip) return false;
+    const zip = s.zip.toString();
+    return zip.startsWith('142') || zip.startsWith('146') || zip.startsWith('132') || 
+           zip.startsWith('143') || zip.startsWith('147') || zip.startsWith('149') || 
+           zip.startsWith('139') || zip.startsWith('148');
+  });
+  
   console.log('Buffalo area zip codes (142xx):', buffaloStores.length, 'stores');
+  console.log('Rochester area zip codes (146xx):', rochesterStores.length, 'stores');
+  console.log('Syracuse area zip codes (132xx):', syracuseStores.length, 'stores');
+  console.log('Niagara Falls area zip codes (143xx):', niagaraStores.length, 'stores');
+  console.log('🌎 Total Western NY stores:', westernNYStores.length, 'stores');
+  
   if (buffaloStores.length > 0) {
     console.log('Buffalo stores:', buffaloStores.map(s => `${s.name} - ${s.zip}`));
-  } else {
-    console.warn('⚠️ No Buffalo stores found! Checking all zip codes...');
-    const allZips = stores.map(s => s.zip).filter(Boolean);
-    console.log('All unique zip codes:', [...new Set(allZips)].sort());
   }
 
   // Function to show loading state
@@ -106,11 +118,26 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         `;
       } else {
+        // More helpful error message with debugging info
+        const searchTerm = document.querySelector('input[type="search"]')?.value || 'your search';
+        const allZips = stores.map(s => s.zip).filter(Boolean).slice(0, 10);
+        const buffaloZips = stores.filter(s => s.zip && s.zip.toString().includes('142')).map(s => s.zip);
+        
         message = `
           <div class="no-results" style="text-align: center; padding: 4rem; color: var(--text-secondary);">
             <i class="fas fa-search-minus" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-            <p style="font-size: 1.2rem;">No stores found within 10 miles of this area.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Try a different zip code (e.g., 10001, 11201, 10021, 11211, 10012, 10003).</p>
+            <p style="font-size: 1.2rem;">No stores found for "${searchTerm}".</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Try searching by zip code or store name.</p>
+            <div style="background: rgba(212, 175, 55, 0.1); padding: 1.5rem; border-radius: 8px; margin-top: 2rem; border: 1px solid rgba(212, 175, 55, 0.3);">
+              <p style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--accent-gold);"><strong>Try these zip codes:</strong></p>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;">
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; transition: all 0.3s;" onclick="document.querySelector('input[type=\\'search\\']').value='14215'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">14215 (Buffalo)</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='142'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">142 (Buffalo area)</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='10001'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">10001 (NYC)</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='11201'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">11201 (NYC)</span>
+              </div>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">💡 Tip: Search for partial zip codes like "142" to find all Buffalo stores</p>
           </div>
         `;
       }
@@ -198,35 +225,52 @@ document.addEventListener('DOMContentLoaded', () => {
         // This handles partial zip codes (e.g., "142" will match "14215", "14222", etc.)
         filteredStores = stores.filter(store => {
           // Check if zip code contains the search term (works for partial matches like "142")
-          const zipMatch = store.zip && store.zip.toString().includes(searchTerm);
-          const nameMatch = store.name && store.name.toLowerCase().includes(searchTerm.toLowerCase());
-          const addressMatch = store.address && store.address.toLowerCase().includes(searchTerm.toLowerCase());
+          // Convert both to strings to ensure proper matching
+          const storeZip = store.zip ? store.zip.toString().trim() : '';
+          const searchTrimmed = searchTerm.toString().trim();
+          const zipMatch = storeZip && (storeZip === searchTrimmed || storeZip.includes(searchTrimmed));
+          const nameMatch = store.name && store.name.toLowerCase().includes(searchTrimmed.toLowerCase());
+          const addressMatch = store.address && store.address.toLowerCase().includes(searchTrimmed.toLowerCase());
           return zipMatch || nameMatch || addressMatch;
         });
 
         console.log('🔍 Search term:', searchTerm, '(type:', typeof searchTerm, ')');
         console.log('📊 Total stores in database:', stores.length);
+        
+        // Enhanced debugging
+        const zipCodes = stores.map(s => s.zip).filter(Boolean);
+        console.log('📋 Sample zip codes:', [...new Set(zipCodes)].slice(0, 20));
+        console.log('📋 All Buffalo zip codes (142xx):', stores.filter(s => s.zip && s.zip.toString().includes('142')).map(s => `${s.name} (${s.zip})`));
+        console.log('📋 All Rochester zip codes (146xx):', stores.filter(s => s.zip && s.zip.toString().includes('146')).map(s => `${s.name} (${s.zip})`));
+        console.log('📋 All Syracuse zip codes (132xx):', stores.filter(s => s.zip && s.zip.toString().includes('132')).map(s => `${s.name} (${s.zip})`));
+        
         console.log('✅ Stores found with simple matching:', filteredStores.length);
         
         if (filteredStores.length > 0) {
           console.log('📍 Matching stores:', filteredStores.map(s => `${s.name} (${s.zip})`));
         } else {
-          // Debug: show zip codes that should match
+          // Enhanced debugging
+          console.log('⚠️ No matches found for:', searchTerm);
+          
+          // Check if search term matches any zip codes
           const testMatch = stores.filter(s => {
             if (!s.zip) return false;
             const zipStr = s.zip.toString();
-            return zipStr.includes(searchTerm) || zipStr.startsWith(searchTerm);
+            const searchLower = searchTerm.toLowerCase();
+            return zipStr.includes(searchTerm) || 
+                   zipStr.toLowerCase().includes(searchLower) ||
+                   s.name.toLowerCase().includes(searchLower) ||
+                   (s.address && s.address.toLowerCase().includes(searchLower));
           });
-          console.log('⚠️ Debug - Zip codes containing "' + searchTerm + '":', testMatch.length, 'stores');
+          
+          console.log('🔍 Debug - Stores matching "' + searchTerm + '":', testMatch.length);
           if (testMatch.length > 0) {
-            console.log('   Should have found:', testMatch.map(s => `${s.name} (${s.zip})`));
-            console.error('❌ BUG: Stores exist but filter is not finding them!');
-            // Force add them for debugging
+            console.log('   Found:', testMatch.map(s => `${s.name} (${s.zip})`));
+            console.error('❌ BUG: Filter logic issue! Using debug results.');
             filteredStores = testMatch;
-            console.log('🔧 Temporarily adding stores for debugging:', filteredStores.length);
           } else {
-            console.log('📋 Sample zip codes in database:', stores.slice(0, 20).map(s => s.zip));
-            console.log('📋 All zip codes containing "142":', stores.filter(s => s.zip && s.zip.toString().includes('142')).map(s => s.zip));
+            console.log('❌ No stores match this search term in the database.');
+            console.log('💡 Try: 14215, 142, 10001, or a store name');
           }
         }
 
