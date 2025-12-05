@@ -294,6 +294,10 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Not a valid zip code format, using name/address matches');
           }
         }
+        */
+
+        // Geocoding is disabled - search works with local zip code matching only
+        console.log('ℹ️ Using local zip code matching (geocoding disabled to prevent API usage)');
 
         console.log('Final results:', filteredStores.length, 'stores');
         renderStores(filteredStores, searchLocation);
