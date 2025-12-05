@@ -1,9 +1,20 @@
 /**
  * Geocoding Helper - Optional enhancement for zip code validation
  * This file provides geocoding functionality with proper error handling
+ * 
+ * ⚠️ SECURITY WARNING: API keys in client-side code are always visible.
+ * You MUST restrict this key in Google Cloud Console:
+ * 1. Go to: https://console.cloud.google.com/apis/credentials
+ * 2. Click your API key → Application restrictions
+ * 3. Add only your domain: https://yourdomain.com/*
+ * 4. Under API restrictions, allow only "Geocoding API"
+ * 
+ * Consider rotating this key if it was previously committed to git.
  */
 
 // Configuration - Google Maps API key
+// TODO: Rotate this key if it was exposed in git history
+// TODO: Restrict this key to your domain in Google Cloud Console
 const GOOGLE_MAPS_API_KEY = 'AIzaSyBNCkA17FuQrsLjToDkdWX_3Z3UHWVId3Q';
 
 // Cache for geocoding results to reduce API calls

@@ -1,2 +1,10 @@
 .DS_Store
 *.DS_Store
+
+# API Keys - Never commit these!
+# Use environment variables or local config files
+*api-key*.js
+*api-key*.html
+*.env
+.env.local
+.env.production
