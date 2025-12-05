@@ -181,13 +181,25 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Total stores available:', stores.length);
 
         // Always start with simple zip code/name/address matching (fast and reliable)
-        filteredStores = stores.filter(store =>
-          store.zip.includes(searchTerm) ||
-          store.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          store.address.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+        // This handles partial zip codes (e.g., "142" will match "14215", "14222", etc.)
+        filteredStores = stores.filter(store => {
+          const zipMatch = store.zip.includes(searchTerm);
+          const nameMatch = store.name.toLowerCase().includes(searchTerm.toLowerCase());
+          const addressMatch = store.address.toLowerCase().includes(searchTerm.toLowerCase());
+          return zipMatch || nameMatch || addressMatch;
+        });
 
+        console.log('Search term:', searchTerm);
+        console.log('Total stores in database:', stores.length);
         console.log('Stores found with simple matching:', filteredStores.length);
+        if (filteredStores.length > 0) {
+          console.log('Matching stores:', filteredStores.map(s => `${s.name} (${s.zip})`));
+        } else {
+          // Debug: show some zip codes to help troubleshoot
+          const sampleZips = stores.slice(0, 10).map(s => s.zip);
+          console.log('Sample zip codes in database:', sampleZips);
+          console.log('All zip codes containing "142":', stores.filter(s => s.zip.includes('142')).map(s => s.zip));
+        }
 
         // Try geocoding to get location (even if no simple matches, for better error messages)
         // This helps us show helpful messages for non-NYC zip codes
