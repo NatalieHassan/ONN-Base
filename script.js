@@ -76,44 +76,30 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderStores(storesToRender, searchLocation = null) {
     resultsContainer.innerHTML = '';
 
-    if (storesToRender.length === 0) {
-      // Check if search location is far from NYC (roughly beyond 50 miles)
-      let isFarFromNYC = false;
-      let distanceMessage = '';
+      if (storesToRender.length === 0) {
+      // Show helpful message when no stores found
+      let locationInfo = '';
       
       if (searchLocation && searchLocation.lat && searchLocation.lng) {
-        // NYC approximate center: 40.7128, -74.0060
-        const nycLat = 40.7128;
-        const nycLng = -74.0060;
-        const distanceFromNYC = calculateDistance(
-          searchLocation.lat, searchLocation.lng,
-          nycLat, nycLng
-        );
-        
-        if (distanceFromNYC > 50) {
-          isFarFromNYC = true;
-          distanceMessage = `This location is approximately ${Math.round(distanceFromNYC)} miles from New York City.`;
-        }
+        locationInfo = searchLocation.address ? ` near ${searchLocation.address}` : ' in this area';
       }
       
       let message = '';
-      if (isFarFromNYC) {
-        message = `
+      message = `
           <div class="no-results" style="text-align: center; padding: 4rem; color: var(--text-secondary);">
             <i class="fas fa-map-marker-alt" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; color: var(--accent-gold);"></i>
-            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">No stores found in this area.</p>
-            <p style="font-size: 1rem; margin-bottom: 1rem; color: var(--text-secondary);">${distanceMessage}</p>
-            <p style="font-size: 1rem; margin-bottom: 1.5rem;"><strong>ONN currently serves the New York City area only.</strong></p>
+            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">No stores found${locationInfo}.</p>
+            <p style="font-size: 1rem; margin-bottom: 1.5rem; color: var(--text-secondary);">We searched within 25 miles of your location, but no stores are currently in our database for this area.</p>
             <div style="background: rgba(212, 175, 55, 0.1); padding: 1.5rem; border-radius: 8px; margin-top: 2rem; border: 1px solid rgba(212, 175, 55, 0.3);">
-              <p style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--accent-gold);"><strong>Try searching NYC zip codes:</strong></p>
+              <p style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--accent-gold);"><strong>Try searching in areas we currently serve:</strong></p>
               <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;">
-                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; transition: all 0.3s;" onclick="document.querySelector('input[type=\\'search\\']').value='10001'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">10001</span>
-                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='11201'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">11201</span>
-                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='10021'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">10021</span>
-                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='11211'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">11211</span>
-                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='10012'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">10012</span>
-                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='10003'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">10003</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; transition: all 0.3s;" onclick="document.querySelector('input[type=\\'search\\']').value='10001'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">10001 (NYC)</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='14215'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">14215 (Buffalo)</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='07030'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">07030 (Hoboken)</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='02903'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">02903 (Providence)</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='06103'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">06103 (Hartford)</span>
               </div>
+              <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;">💡 ONN works nationwide! We're adding stores across the US. Try any zip code to search within 25 miles.</p>
             </div>
           </div>
         `;
