@@ -47,17 +47,61 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Function to render stores
-  function renderStores(storesToRender) {
+  function renderStores(storesToRender, searchLocation = null) {
     resultsContainer.innerHTML = '';
 
     if (storesToRender.length === 0) {
-      resultsContainer.innerHTML = `
-        <div class="no-results" style="text-align: center; padding: 4rem; color: var(--text-secondary);">
-          <i class="fas fa-search-minus" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-          <p style="font-size: 1.2rem;">No stores found within 10 miles of this area.</p>
-          <p style="margin-top: 0.5rem; font-size: 0.9rem;">Try a different zip code (e.g., 10001, 11201, 10021, 11211, 10012, 10003).</p>
-        </div>
-      `;
+      // Check if search location is far from NYC (roughly beyond 50 miles)
+      let isFarFromNYC = false;
+      let distanceMessage = '';
+      
+      if (searchLocation && searchLocation.lat && searchLocation.lng) {
+        // NYC approximate center: 40.7128, -74.0060
+        const nycLat = 40.7128;
+        const nycLng = -74.0060;
+        const distanceFromNYC = calculateDistance(
+          searchLocation.lat, searchLocation.lng,
+          nycLat, nycLng
+        );
+        
+        if (distanceFromNYC > 50) {
+          isFarFromNYC = true;
+          distanceMessage = `This location is approximately ${Math.round(distanceFromNYC)} miles from New York City.`;
+        }
+      }
+      
+      let message = '';
+      if (isFarFromNYC) {
+        message = `
+          <div class="no-results" style="text-align: center; padding: 4rem; color: var(--text-secondary);">
+            <i class="fas fa-map-marker-alt" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; color: var(--accent-gold);"></i>
+            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">No stores found in this area.</p>
+            <p style="font-size: 1rem; margin-bottom: 1rem; color: var(--text-secondary);">${distanceMessage}</p>
+            <p style="font-size: 1rem; margin-bottom: 1.5rem;"><strong>ONN currently serves the New York City area only.</strong></p>
+            <div style="background: rgba(212, 175, 55, 0.1); padding: 1.5rem; border-radius: 8px; margin-top: 2rem; border: 1px solid rgba(212, 175, 55, 0.3);">
+              <p style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--accent-gold);"><strong>Try searching NYC zip codes:</strong></p>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;">
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; transition: all 0.3s;" onclick="document.querySelector('input[type=\\'search\\']').value='10001'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">10001</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='11201'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">11201</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='10021'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">10021</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='11211'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">11211</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='10012'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">10012</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="document.querySelector('input[type=\\'search\\']').value='10003'; document.querySelector('.search-form').dispatchEvent(new Event('submit', {bubbles: true}));">10003</span>
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        message = `
+          <div class="no-results" style="text-align: center; padding: 4rem; color: var(--text-secondary);">
+            <i class="fas fa-search-minus" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+            <p style="font-size: 1.2rem;">No stores found within 10 miles of this area.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Try a different zip code (e.g., 10001, 11201, 10021, 11211, 10012, 10003).</p>
+          </div>
+        `;
+      }
+      
+      resultsContainer.innerHTML = message;
       return;
     }
 
@@ -130,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         let filteredStores = [];
+        let searchLocation = null; // Store geocoded location for better error messages
         const searchRadiusMiles = 10; // Search radius in miles
 
         console.log('Searching for:', searchTerm);
@@ -144,9 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log('Stores found with simple matching:', filteredStores.length);
 
-        // If we have results and geocoding is available, enhance with distance filtering
-        // Only use geocoding if we have exact zip matches to avoid unnecessary API calls
-        if (filteredStores.length > 0 && typeof geocodeZipCode !== 'undefined' && typeof isValidZipCodeFormat !== 'undefined') {
+        // Try geocoding to get location (even if no simple matches, for better error messages)
+        // This helps us show helpful messages for non-NYC zip codes
+        if (typeof geocodeZipCode !== 'undefined' && typeof isValidZipCodeFormat !== 'undefined') {
           if (isValidZipCodeFormat(searchTerm)) {
             try {
               // Get coordinates for the search zip code
@@ -158,27 +203,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 console.log('Geocoding successful. Searching within', searchRadiusMiles, 'miles of:', geocodeResult.address);
                 
-                // Filter by distance, but always include exact zip matches
-                filteredStores = stores.filter(store => {
-                  // Always include exact zip code matches
-                  if (store.zip === searchTerm) {
-                    return true;
-                  }
-                  
-                  // If store has coordinates, check distance
-                  if (store.lat && store.lng) {
-                    const distance = calculateDistance(
-                      searchLat, searchLng,
-                      store.lat, store.lng
-                    );
-                    return distance <= searchRadiusMiles;
-                  }
-                  
-                  // If no coordinates, include if zip code matches
-                  return store.zip.includes(searchTerm);
-                });
+                // Store search location for better error messaging
+                searchLocation = {
+                  lat: searchLat,
+                  lng: searchLng,
+                  address: geocodeResult.address
+                };
                 
-                console.log('Stores found with distance filtering:', filteredStores.length);
+                // If we had simple matches, enhance with distance filtering
+                if (filteredStores.length > 0) {
+                  // Filter by distance, but always include exact zip matches
+                  filteredStores = stores.filter(store => {
+                    // Always include exact zip code matches
+                    if (store.zip === searchTerm) {
+                      return true;
+                    }
+                    
+                    // If store has coordinates, check distance
+                    if (store.lat && store.lng) {
+                      const distance = calculateDistance(
+                        searchLat, searchLng,
+                        store.lat, store.lng
+                      );
+                      return distance <= searchRadiusMiles;
+                    }
+                    
+                    // If no coordinates, include if zip code matches
+                    return store.zip.includes(searchTerm);
+                  });
+                  
+                  console.log('Stores found with distance filtering:', filteredStores.length);
+                }
+                // If no simple matches, filteredStores stays empty, but we have searchLocation for better error message
               } else {
                 // Geocoding didn't return valid result, keep simple matching results
                 console.log('Geocoding unavailable or rate limited, using zip code matches');
@@ -195,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         console.log('Final results:', filteredStores.length, 'stores');
-        renderStores(filteredStores);
+        renderStores(filteredStores, searchLocation);
 
         // Option 2: Uncomment below to use a real API instead
         /*
