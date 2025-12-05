@@ -27,7 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('✅ Stores loaded successfully!');
   console.log('Total stores:', stores.length);
   console.log('Sample zip codes:', stores.slice(0, 5).map(s => s.zip));
-  console.log('Buffalo area zip codes (142xx):', stores.filter(s => s.zip.startsWith('142')).map(s => `${s.name} - ${s.zip}`));
+  const buffaloStores = stores.filter(s => s.zip && (s.zip.startsWith('142') || s.zip.includes('142')));
+  console.log('Buffalo area zip codes (142xx):', buffaloStores.length, 'stores');
+  if (buffaloStores.length > 0) {
+    console.log('Buffalo stores:', buffaloStores.map(s => `${s.name} - ${s.zip}`));
+  } else {
+    console.warn('⚠️ No Buffalo stores found! Checking all zip codes...');
+    const allZips = stores.map(s => s.zip).filter(Boolean);
+    console.log('All unique zip codes:', [...new Set(allZips)].sort());
+  }
 
   // Function to show loading state
   function showLoading() {
@@ -196,19 +204,30 @@ document.addEventListener('DOMContentLoaded', () => {
           return zipMatch || nameMatch || addressMatch;
         });
 
-        console.log('🔍 Search term:', searchTerm);
+        console.log('🔍 Search term:', searchTerm, '(type:', typeof searchTerm, ')');
         console.log('📊 Total stores in database:', stores.length);
         console.log('✅ Stores found with simple matching:', filteredStores.length);
+        
         if (filteredStores.length > 0) {
           console.log('📍 Matching stores:', filteredStores.map(s => `${s.name} (${s.zip})`));
         } else {
           // Debug: show zip codes that should match
-          const testMatch = stores.filter(s => s.zip && s.zip.toString().includes(searchTerm));
+          const testMatch = stores.filter(s => {
+            if (!s.zip) return false;
+            const zipStr = s.zip.toString();
+            return zipStr.includes(searchTerm) || zipStr.startsWith(searchTerm);
+          });
           console.log('⚠️ Debug - Zip codes containing "' + searchTerm + '":', testMatch.length, 'stores');
           if (testMatch.length > 0) {
             console.log('   Should have found:', testMatch.map(s => `${s.name} (${s.zip})`));
+            console.error('❌ BUG: Stores exist but filter is not finding them!');
+            // Force add them for debugging
+            filteredStores = testMatch;
+            console.log('🔧 Temporarily adding stores for debugging:', filteredStores.length);
+          } else {
+            console.log('📋 Sample zip codes in database:', stores.slice(0, 20).map(s => s.zip));
+            console.log('📋 All zip codes containing "142":', stores.filter(s => s.zip && s.zip.toString().includes('142')).map(s => s.zip));
           }
-          console.log('📋 Sample zip codes in database:', stores.slice(0, 20).map(s => s.zip));
         }
 
         // Try geocoding to get location (even if no simple matches, for better error messages)
