@@ -22,7 +22,7 @@ const geocodeCache = new Map();
 
 // Rate limiting - track last request time
 let lastRequestTime = 0;
-const MIN_REQUEST_INTERVAL = 200; // Minimum 200ms between requests (5 requests per second max)
+const MIN_REQUEST_INTERVAL = 1000; // Minimum 1 second between requests (1 request per second max) - more conservative to prevent API overuse
 
 /**
  * Geocode a zip code to get coordinates and address details

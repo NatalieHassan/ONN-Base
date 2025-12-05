@@ -156,13 +156,15 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.transform = 'translateY(20px)';
       card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
       
+      const distanceBadge = store.distance ? `<span class="distance-badge" style="background: rgba(212, 175, 55, 0.2); color: var(--accent-gold); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.85rem; margin-left: 0.5rem;"><i class="fas fa-map-marker-alt"></i> ${store.distance.toFixed(1)} mi</span>` : '';
+      
       card.innerHTML = `
         <div class="store-image">
           <img src="${store.image}" alt="${store.name}" loading="lazy">
           <span class="store-category">${store.category}</span>
         </div>
         <div class="store-info">
-          <h3>${store.name}</h3>
+          <h3>${store.name}${distanceBadge}</h3>
           <p class="store-address"><i class="fas fa-map-marker-alt"></i> ${store.address}</p>
           <p class="store-description">${store.description}</p>
           <div class="store-footer">
@@ -274,40 +276,35 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
 
-        // DISABLED: Geocoding temporarily disabled to prevent API usage issues
-        // The search works perfectly with local zip code matching
-        // Uncomment below to re-enable geocoding (distance-based search)
-        /*
-        // Try geocoding to get location (even if no simple matches, for better error messages)
-        // This helps us show helpful messages for non-NYC zip codes
+        // ENABLED: Geocoding for distance-based search (finds stores near ANY zip code)
+        // Only geocodes if no exact matches found, with aggressive caching to minimize API calls
         if (typeof geocodeZipCode !== 'undefined' && typeof isValidZipCodeFormat !== 'undefined') {
+          // Only geocode if:
+          // 1. It's a valid zip code format (5 digits)
+          // 2. We have no exact matches (to avoid unnecessary API calls)
           if (isValidZipCodeFormat(searchTerm)) {
-            try {
-              // Get coordinates for the search zip code
-              const geocodeResult = await geocodeZipCode(searchTerm);
-              
-              if (geocodeResult && geocodeResult.valid && geocodeResult.location) {
-                const searchLat = geocodeResult.location.lat;
-                const searchLng = geocodeResult.location.lng;
+            // If we already found exact matches, skip geocoding (save API calls)
+            if (filteredStores.length === 0) {
+              console.log('🔍 No exact matches found. Trying geocoding to find nearby stores...');
+              try {
+                // Get coordinates for the search zip code
+                const geocodeResult = await geocodeZipCode(searchTerm);
                 
-                console.log('Geocoding successful. Searching within', searchRadiusMiles, 'miles of:', geocodeResult.address);
-                
-                // Store search location for better error messaging
-                searchLocation = {
-                  lat: searchLat,
-                  lng: searchLng,
-                  address: geocodeResult.address
-                };
-                
-                // If we had simple matches, enhance with distance filtering
-                if (filteredStores.length > 0) {
-                  // Filter by distance, but always include exact zip matches
+                if (geocodeResult && geocodeResult.valid && geocodeResult.location) {
+                  const searchLat = geocodeResult.location.lat;
+                  const searchLng = geocodeResult.location.lng;
+                  
+                  console.log('✅ Geocoding successful. Searching within', searchRadiusMiles, 'miles of:', geocodeResult.address);
+                  
+                  // Store search location for better error messaging
+                  searchLocation = {
+                    lat: searchLat,
+                    lng: searchLng,
+                    address: geocodeResult.address
+                  };
+                  
+                  // Find all stores within the search radius
                   filteredStores = stores.filter(store => {
-                    // Always include exact zip code matches
-                    if (store.zip === searchTerm) {
-                      return true;
-                    }
-                    
                     // If store has coordinates, check distance
                     if (store.lat && store.lng) {
                       const distance = calculateDistance(
@@ -316,32 +313,39 @@ document.addEventListener('DOMContentLoaded', () => {
                       );
                       return distance <= searchRadiusMiles;
                     }
-                    
-                    // If no coordinates, include if zip code matches
-                    return store.zip.includes(searchTerm);
+                    // If no coordinates, skip this store
+                    return false;
                   });
                   
-                  console.log('Stores found with distance filtering:', filteredStores.length);
+                  console.log('📍 Stores found within', searchRadiusMiles, 'miles:', filteredStores.length);
+                  if (filteredStores.length > 0) {
+                    // Sort by distance (closest first)
+                    filteredStores = filteredStores.map(store => {
+                      const distance = calculateDistance(
+                        searchLat, searchLng,
+                        store.lat, store.lng
+                      );
+                      return { ...store, distance };
+                    }).sort((a, b) => a.distance - b.distance);
+                  }
+                } else {
+                  // Geocoding didn't return valid result
+                  console.log('⚠️ Geocoding unavailable. Using local zip code matching only.');
                 }
-                // If no simple matches, filteredStores stays empty, but we have searchLocation for better error message
-              } else {
-                // Geocoding didn't return valid result, keep simple matching results
-                console.log('Geocoding unavailable or rate limited, using zip code matches');
+              } catch (error) {
+                console.warn('⚠️ Geocoding error (continuing with local search):', error.message);
+                // Continue with simple matching results (empty array)
               }
-            } catch (geocodeError) {
-              // Geocoding failed, but we already have results from simple matching
-              console.log('Geocoding failed, using zip code matches:', geocodeError.message);
-              // Keep the filteredStores from simple matching above
+            } else {
+              console.log('✅ Found exact matches. Skipping geocoding to save API calls.');
             }
           } else {
             // Not a valid zip code format, keep simple name/address matches
-            console.log('Not a valid zip code format, using name/address matches');
+            console.log('ℹ️ Not a valid zip code format, using name/address matches');
           }
+        } else {
+          console.log('ℹ️ Geocoding not available. Using local zip code matching only.');
         }
-        */
-
-        // Geocoding is disabled - search works with local zip code matching only
-        console.log('ℹ️ Using local zip code matching (geocoding disabled to prevent API usage)');
 
         console.log('Final results:', filteredStores.length, 'stores');
         renderStores(filteredStores, searchLocation);
