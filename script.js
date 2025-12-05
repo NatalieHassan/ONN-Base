@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let filteredStores = [];
         let searchLocation = null; // Store geocoded location for better error messages
-        const searchRadiusMiles = 10; // Search radius in miles
+        const searchRadiusMiles = 25; // Search radius in miles
 
         console.log('Searching for:', searchTerm);
         console.log('Total stores available:', stores.length);
