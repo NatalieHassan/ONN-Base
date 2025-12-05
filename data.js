@@ -189,5 +189,83 @@ const stores = [
     image: "https://images.unsplash.com/photo-1576188973526-0e5d7047b0cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     description: "Chain known for buying and selling trendy secondhand clothing.",
     rating: 4.1
+  },
+
+  // 20001 - Downtown Washington, DC
+  {
+    id: 16,
+    name: "Georgetown Consignment",
+    address: "1234 M St NW, Washington, DC",
+    zip: "20001",
+    lat: 38.9047,
+    lng: -77.0414,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Luxury consignment in the heart of Georgetown featuring designer pieces.",
+    rating: 4.7
+  },
+  {
+    id: 17,
+    name: "Dupont Circle Thrift",
+    address: "1500 Connecticut Ave NW, Washington, DC",
+    zip: "20036",
+    lat: 38.9098,
+    lng: -77.0433,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Curated thrift finds in Dupont Circle. Great selection of vintage and contemporary pieces.",
+    rating: 4.3
+  },
+
+  // 22314 - Alexandria, Virginia
+  {
+    id: 18,
+    name: "Old Town Vintage",
+    address: "123 King St, Alexandria, VA",
+    zip: "22314",
+    lat: 38.8048,
+    lng: -77.0469,
+    category: "Vintage",
+    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Vintage clothing and accessories in historic Old Town Alexandria.",
+    rating: 4.6
+  },
+  {
+    id: 19,
+    name: "Virginia Consignment Boutique",
+    address: "456 Washington St, Alexandria, VA",
+    zip: "22314",
+    lat: 38.8065,
+    lng: -77.0442,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Designer consignment with a focus on professional and evening wear.",
+    rating: 4.5
+  },
+
+  // 20814 - Bethesda, Maryland
+  {
+    id: 20,
+    name: "Bethesda Luxury Consignment",
+    address: "456 Wisconsin Ave, Bethesda, MD",
+    zip: "20814",
+    lat: 38.9847,
+    lng: -77.0947,
+    category: "Consignment",
+    image: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "High-end designer consignment in Bethesda. Specializing in luxury brands.",
+    rating: 4.8
+  },
+  {
+    id: 21,
+    name: "Maryland Thrift Exchange",
+    address: "789 Bethesda Ave, Bethesda, MD",
+    zip: "20814",
+    lat: 38.9821,
+    lng: -77.0965,
+    category: "Thrift",
+    image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    description: "Community-focused thrift store with great finds for the whole family.",
+    rating: 4.2
   }
 ];
