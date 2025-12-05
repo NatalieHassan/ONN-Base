@@ -230,6 +230,10 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
 
+        // DISABLED: Geocoding temporarily disabled to prevent API usage issues
+        // The search works perfectly with local zip code matching
+        // Uncomment below to re-enable geocoding (distance-based search)
+        /*
         // Try geocoding to get location (even if no simple matches, for better error messages)
         // This helps us show helpful messages for non-NYC zip codes
         if (typeof geocodeZipCode !== 'undefined' && typeof isValidZipCodeFormat !== 'undefined') {
