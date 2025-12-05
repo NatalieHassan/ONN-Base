@@ -669,19 +669,7 @@ const stores = [
   },
 
   // WESTERN NEW YORK - Buffalo Area
-  // 14215 - Buffalo, NY
-  {
-    id: 51,
-    name: "Buffalo Thrift & Consignment",
-    address: "123 Main St, Buffalo, NY",
-    zip: "14215",
-    lat: 42.8864,
-    lng: -78.8784,
-    category: "Thrift",
-    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    description: "Affordable thrift finds in Buffalo. Great selection of winter clothing.",
-    rating: 4.3
-  },
+  // Note: Removed fictitious "123 Main St" addresses - keeping only stores with realistic addresses
   {
     id: 52,
     name: "Queen City Consignment",
@@ -744,19 +732,7 @@ const stores = [
   },
 
   // ROCHESTER, NY Area
-  // 14604 - Rochester, NY
-  {
-    id: 57,
-    name: "Rochester Thrift & Vintage",
-    address: "123 Main St, Rochester, NY",
-    zip: "14604",
-    lat: 43.1566,
-    lng: -77.6088,
-    category: "Thrift",
-    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    description: "Affordable vintage and thrift finds in downtown Rochester.",
-    rating: 4.4
-  },
+  // Note: Removed fictitious "123 Main St" address - keeping only stores with realistic addresses
   {
     id: 58,
     name: "Flower City Consignment",
@@ -834,19 +810,7 @@ const stores = [
   },
 
   // NIAGARA FALLS, NY Area
-  // 14301 - Niagara Falls, NY
-  {
-    id: 64,
-    name: "Niagara Falls Thrift",
-    address: "123 Main St, Niagara Falls, NY",
-    zip: "14301",
-    lat: 43.0962,
-    lng: -79.0377,
-    category: "Thrift",
-    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    description: "Affordable thrift finds near the Falls.",
-    rating: 4.3
-  },
+  // Note: Removed fictitious "123 Main St" address - keeping only stores with realistic addresses
   {
     id: 65,
     name: "Falls Consignment",
@@ -861,19 +825,7 @@ const stores = [
   },
 
   // JAMESTOWN, NY Area
-  // 14701 - Jamestown, NY
-  {
-    id: 66,
-    name: "Jamestown Thrift",
-    address: "123 Main St, Jamestown, NY",
-    zip: "14701",
-    lat: 42.0970,
-    lng: -79.2353,
-    category: "Thrift",
-    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    description: "Affordable thrift finds in Jamestown.",
-    rating: 4.2
-  },
+  // Note: Removed fictitious "123 Main St" address - keeping only stores with realistic addresses
 
   // ELMIRA, NY Area
   // 14901 - Elmira, NY
@@ -891,19 +843,7 @@ const stores = [
   },
 
   // BINGHAMTON, NY Area
-  // 13901 - Binghamton, NY
-  {
-    id: 68,
-    name: "Binghamton Thrift",
-    address: "123 Main St, Binghamton, NY",
-    zip: "13901",
-    lat: 42.0987,
-    lng: -75.9180,
-    category: "Thrift",
-    image: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    description: "Affordable thrift finds in Binghamton.",
-    rating: 4.3
-  },
+  // Note: Removed fictitious "123 Main St" address - keeping only stores with realistic addresses
 
   // ITHACA, NY Area
   // 14850 - Ithaca, NY
