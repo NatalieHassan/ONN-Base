@@ -189,22 +189,26 @@ document.addEventListener('DOMContentLoaded', () => {
         // Always start with simple zip code/name/address matching (fast and reliable)
         // This handles partial zip codes (e.g., "142" will match "14215", "14222", etc.)
         filteredStores = stores.filter(store => {
-          const zipMatch = store.zip.includes(searchTerm);
-          const nameMatch = store.name.toLowerCase().includes(searchTerm.toLowerCase());
-          const addressMatch = store.address.toLowerCase().includes(searchTerm.toLowerCase());
+          // Check if zip code contains the search term (works for partial matches like "142")
+          const zipMatch = store.zip && store.zip.toString().includes(searchTerm);
+          const nameMatch = store.name && store.name.toLowerCase().includes(searchTerm.toLowerCase());
+          const addressMatch = store.address && store.address.toLowerCase().includes(searchTerm.toLowerCase());
           return zipMatch || nameMatch || addressMatch;
         });
 
-        console.log('Search term:', searchTerm);
-        console.log('Total stores in database:', stores.length);
-        console.log('Stores found with simple matching:', filteredStores.length);
+        console.log('🔍 Search term:', searchTerm);
+        console.log('📊 Total stores in database:', stores.length);
+        console.log('✅ Stores found with simple matching:', filteredStores.length);
         if (filteredStores.length > 0) {
-          console.log('Matching stores:', filteredStores.map(s => `${s.name} (${s.zip})`));
+          console.log('📍 Matching stores:', filteredStores.map(s => `${s.name} (${s.zip})`));
         } else {
-          // Debug: show some zip codes to help troubleshoot
-          const sampleZips = stores.slice(0, 10).map(s => s.zip);
-          console.log('Sample zip codes in database:', sampleZips);
-          console.log('All zip codes containing "142":', stores.filter(s => s.zip.includes('142')).map(s => s.zip));
+          // Debug: show zip codes that should match
+          const testMatch = stores.filter(s => s.zip && s.zip.toString().includes(searchTerm));
+          console.log('⚠️ Debug - Zip codes containing "' + searchTerm + '":', testMatch.length, 'stores');
+          if (testMatch.length > 0) {
+            console.log('   Should have found:', testMatch.map(s => `${s.name} (${s.zip})`));
+          }
+          console.log('📋 Sample zip codes in database:', stores.slice(0, 20).map(s => s.zip));
         }
 
         // Try geocoding to get location (even if no simple matches, for better error messages)
